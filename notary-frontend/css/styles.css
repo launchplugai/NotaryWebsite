@@ -935,21 +935,21 @@ select.form-input {
 
 /* === CTA Section === */
 .cta {
-  background: var(--navy);
-  color: var(--white);
+  background: var(--primary);
+  color: var(--navy);
   padding: 4rem 2rem;
   border-radius: var(--radius-lg);
   text-align: center;
 }
 
 .cta h2 {
-  color: var(--white);
+  color: var(--navy);
   font-size: 2.25rem;
   margin-bottom: 1rem;
 }
 
 .cta p {
-  color: rgba(255,255,255,0.8);
+  color: var(--navy);
   font-size: 1.1rem;
   max-width: 500px;
   margin: 0 auto 2rem;
@@ -958,8 +958,8 @@ select.form-input {
 
 /* === Footer === */
 .footer {
-  background: var(--navy);
-  color: var(--gray-300);
+  background: var(--primary);
+  color: var(--navy);
   padding: 3rem 0 1.5rem;
 }
 
@@ -971,7 +971,7 @@ select.form-input {
 }
 
 .footer__brand {
-  color: var(--white);
+  color: var(--navy);
   font-weight: 600;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
@@ -983,30 +983,29 @@ select.form-input {
 .footer__brand-logo {
   height: 300px;
   width: auto;
-  filter: brightness(0) invert(1);
 }
 
 .footer__brand::before {
   content: '';
   width: 4px;
   height: 20px;
-  background: var(--gold);
+  background: var(--navy);
   border-radius: 2px;
 }
-.footer__desc { font-size: 0.85rem; color: var(--gray-500); }
+.footer__desc { font-size: 0.85rem; color: var(--navy); }
 
-.footer h4 { color: var(--white); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+.footer h4 { color: var(--navy); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
 
 .footer__links { list-style: none; }
 .footer__links li { margin-bottom: 0.4rem; }
-.footer__links a { color: var(--gray-500); font-size: 0.85rem; }
-.footer__links a:hover { color: var(--cerulean); }
+.footer__links a { color: var(--navy); font-size: 0.85rem; }
+.footer__links a:hover { color: var(--white); }
 
 .footer__bottom {
-  border-top: 1px solid var(--gold);
+  border-top: 1px solid var(--navy);
   padding-top: 1.5rem;
   font-size: 0.8rem;
-  color: var(--gray-500);
+  color: var(--navy);
   display: flex;
   justify-content: space-between;
 }
