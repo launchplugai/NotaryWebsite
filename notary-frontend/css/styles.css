@@ -1,10 +1,10 @@
 /* === NOTARY FRONTEND — Design System === */
 
 :root {
-  /* Ink Spot Brand Colors - Tar Heel Blue */
-  --primary: #7BAFD4;
-  --primary-dark: #56A0D3;
-  --primary-light: #99C4E2;
+  /* Ink Spot Brand Colors - Tar Heel Blue (bright cyan) */
+  --primary: #56C4E8;
+  --primary-dark: #3BB5DC;
+  --primary-light: #7DD3F0;
   --navy: #13294B;
   --navy-light: #1e3a5f;
   --gold: #D4AF37;
@@ -18,7 +18,7 @@
   --gray-500: #6b7280;
   --gray-700: #374151;
   --gray-900: #13294B;
-  --cerulean: #7BAFD4;
+  --cerulean: #56C4E8;
   --text-dark: #13294B;
   --text-body: #374151;
   --cyan: #b8bec8;
