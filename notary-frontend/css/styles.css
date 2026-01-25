@@ -1,10 +1,10 @@
 /* === NOTARY FRONTEND — Design System === */
 
 :root {
-  /* Ink Spot Brand Colors - Carolina Blue */
-  --primary: #4B9CD3;
-  --primary-dark: #3d7fb0;
-  --primary-light: #7BAFD4;
+  /* Ink Spot Brand Colors - Tar Heel Blue */
+  --primary: #7BAFD4;
+  --primary-dark: #56A0D3;
+  --primary-light: #99C4E2;
   --navy: #13294B;
   --navy-light: #1e3a5f;
   --gold: #D4AF37;
@@ -18,7 +18,7 @@
   --gray-500: #6b7280;
   --gray-700: #374151;
   --gray-900: #13294B;
-  --cerulean: #4B9CD3;
+  --cerulean: #7BAFD4;
   --text-dark: #13294B;
   --text-body: #374151;
   --cyan: #b8bec8;
@@ -185,37 +185,26 @@ a:hover { color: var(--cerulean); }
 
 .services-carousel {
   position: relative;
-  max-width: 1000px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
 .carousel__track {
   display: flex;
-  gap: 1.5rem;
   transition: transform 0.5s ease;
 }
 
 .service-card {
-  flex: 0 0 calc(33.333% - 1rem);
-  min-width: calc(33.333% - 1rem);
-  padding: 2rem 1.5rem;
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-lg);
+  flex: 0 0 100%;
+  min-width: 100%;
+  padding: 2.5rem 2rem;
   text-align: center;
-  transition: all 0.3s ease;
-}
-
-.service-card:hover {
-  border-color: var(--primary);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
 }
 
 .service-card__icon {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 1rem;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 1.25rem;
   background: linear-gradient(135deg, var(--primary), var(--gold));
   border-radius: 50%;
   display: flex;
@@ -228,48 +217,24 @@ a:hover { color: var(--cerulean); }
 }
 
 .service-card h3 {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   margin-bottom: 0.75rem;
   color: var(--navy);
 }
 
 .service-card p {
-  font-size: 0.875rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.7;
   color: var(--gray-700);
-}
-
-.carousel__nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.carousel__arrow {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid var(--gray-300);
-  background: var(--white);
-  color: var(--navy);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.carousel__arrow:hover {
-  border-color: var(--primary);
-  background: var(--primary);
-  color: var(--white);
+  max-width: 450px;
+  margin: 0 auto;
 }
 
 .carousel__dots {
   display: flex;
+  justify-content: center;
   gap: 0.5rem;
+  margin-top: 1.5rem;
 }
 
 .carousel__dot {
@@ -286,20 +251,6 @@ a:hover { color: var(--cerulean); }
 .carousel__dot.active {
   background: var(--primary);
   transform: scale(1.2);
-}
-
-@media (max-width: 900px) {
-  .service-card {
-    flex: 0 0 calc(50% - 0.75rem);
-    min-width: calc(50% - 0.75rem);
-  }
-}
-
-@media (max-width: 600px) {
-  .service-card {
-    flex: 0 0 100%;
-    min-width: 100%;
-  }
 }
 
 /* === Scroll Reveal === */
@@ -995,94 +946,27 @@ select.form-input {
   margin-top: 0.25rem;
 }
 
-/* === CTA Banner === */
-.cta-section {
-  padding: 0;
-}
-
-.cta-banner {
+/* === CTA Section === */
+.cta {
   background: var(--navy);
   color: var(--white);
-  padding: 4rem 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
-}
-
-.cta-banner__content h2 {
-  color: var(--white);
-  font-size: 2.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.cta-banner__content p {
-  color: rgba(255,255,255,0.7);
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-}
-
-.cta-banner__actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.btn--outline-light {
-  background: transparent;
-  color: var(--white);
-  border: 2px solid rgba(255,255,255,0.4);
-}
-
-.btn--outline-light:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: var(--white);
-  color: var(--white);
-}
-
-.cta-banner__stats {
-  display: flex;
-  gap: 3rem;
-}
-
-.cta-stat {
+  padding: 4rem 2rem;
+  border-radius: var(--radius-lg);
   text-align: center;
 }
 
-.cta-stat__number {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--gold);
-  line-height: 1.2;
+.cta h2 {
+  color: var(--white);
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
 }
 
-.cta-stat__label {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.6);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-@media (max-width: 900px) {
-  .cta-banner {
-    flex-direction: column;
-    text-align: center;
-    padding: 3rem 2rem;
-  }
-  .cta-banner__actions {
-    justify-content: center;
-  }
-  .cta-banner__stats {
-    gap: 2rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .cta-banner__stats {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+.cta p {
+  color: rgba(255,255,255,0.8);
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
 }
 
 /* === Footer === */
