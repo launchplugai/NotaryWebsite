@@ -308,7 +308,7 @@ a:hover { color: var(--cerulean); }
   z-index: 100;
   background: var(--white);
   border-bottom: 1px solid var(--gray-200);
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   transition: box-shadow var(--transition);
 }
 
@@ -333,7 +333,7 @@ a:hover { color: var(--cerulean); }
 }
 
 .nav__brand-logo {
-  height: 70px;
+  height: 120px;
   width: auto;
   object-fit: contain;
 }
@@ -1013,7 +1013,7 @@ select.form-input {
 }
 
 .footer__brand-logo {
-  height: 50px;
+  height: 80px;
   width: auto;
   filter: brightness(0) invert(1);
 }
