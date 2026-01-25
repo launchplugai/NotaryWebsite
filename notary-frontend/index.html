@@ -157,12 +157,7 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
-      <div class="carousel__dots">
-        <button class="carousel__dot active" data-index="0"></button>
-        <button class="carousel__dot" data-index="1"></button>
-        <button class="carousel__dot" data-index="2"></button>
-        <button class="carousel__dot" data-index="3"></button>
-      </div>
+      <div class="carousel__dots" id="serviceDots"></div>
     </div>
   </section>
 
@@ -373,31 +368,72 @@
       updateParallax();
     })();
 
-    // === Services Carousel ===
+    // === Services Carousel (Responsive Multi-Card) ===
     (function() {
       const track = document.querySelector('.carousel__track');
       const slides = document.querySelectorAll('.service-slide');
-      const dots = document.querySelectorAll('.carousel__dot');
+      const dotsContainer = document.getElementById('serviceDots');
       const prevBtn = document.querySelector('.carousel__arrow--prev');
       const nextBtn = document.querySelector('.carousel__arrow--next');
       let current = 0;
       let autoTimer;
+      let visibleCards = 3;
+
+      function getVisibleCards() {
+        if (window.innerWidth <= 600) return 1;
+        if (window.innerWidth <= 900) return 2;
+        return 3;
+      }
+
+      function getTotalPages() {
+        visibleCards = getVisibleCards();
+        return Math.max(1, slides.length - visibleCards + 1);
+      }
+
+      function buildDots() {
+        const totalPages = getTotalPages();
+        dotsContainer.innerHTML = '';
+        if (totalPages <= 1) return;
+        for (let i = 0; i < totalPages; i++) {
+          const dot = document.createElement('button');
+          dot.className = 'carousel__dot' + (i === current ? ' active' : '');
+          dot.dataset.index = i;
+          dot.addEventListener('click', () => goTo(i));
+          dotsContainer.appendChild(dot);
+        }
+      }
+
+      function getSlideWidth() {
+        if (!slides[0]) return 0;
+        const style = getComputedStyle(track);
+        const gap = parseFloat(style.gap) || 0;
+        return slides[0].offsetWidth + gap;
+      }
 
       function goTo(index) {
-        current = (index + slides.length) % slides.length;
-        track.style.transform = `translateX(-${current * 100}%)`;
-        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        const totalPages = getTotalPages();
+        current = Math.max(0, Math.min(index, totalPages - 1));
+        const slideWidth = getSlideWidth();
+        track.style.transform = `translateX(-${current * slideWidth}px)`;
+        dotsContainer.querySelectorAll('.carousel__dot').forEach((d, i) =>
+          d.classList.toggle('active', i === current)
+        );
         resetAuto();
       }
 
       function resetAuto() {
         clearInterval(autoTimer);
-        autoTimer = setInterval(() => goTo(current + 1), 4000);
+        const totalPages = getTotalPages();
+        if (totalPages > 1) {
+          autoTimer = setInterval(() => {
+            current = (current + 1) % totalPages;
+            goTo(current);
+          }, 5000);
+        }
       }
 
       prevBtn.addEventListener('click', () => goTo(current - 1));
       nextBtn.addEventListener('click', () => goTo(current + 1));
-      dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.index)));
 
       // Touch/swipe support
       let startX = 0;
@@ -407,6 +443,18 @@
         if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
       }, { passive: true });
 
+      // Handle resize
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          current = 0;
+          buildDots();
+          goTo(0);
+        }, 150);
+      });
+
+      buildDots();
       resetAuto();
     })();
 
