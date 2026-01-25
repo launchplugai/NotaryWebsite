@@ -105,41 +105,29 @@
     </div>
   </section>
 
-  <!-- Services Carousel -->
+  <!-- Services -->
   <section class="section section--services">
     <div class="container">
       <h2 class="text-center">Services We Offer</h2>
-      <div class="services-carousel" id="servicesCarousel">
-        <div class="service-card active">
-          <div class="service-card__icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-          </div>
+      <div class="services-fade" id="servicesFade">
+        <div class="service-item active">
           <h3>Notary Trust Delivery Agent</h3>
           <p>We provide secure, verified delivery of sensitive estate and trust documents with complete chain-of-custody documentation. Your important legal papers are handled with the utmost care and delivered safely to their intended destination.</p>
         </div>
-        <div class="service-card">
-          <div class="service-card__icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
+        <div class="service-item">
           <h3>Certified Loan Signing Agent</h3>
           <p>As an NNA certified signing agent, we handle all aspects of real estate closings with precision and professionalism. From purchases and refinances to HELOCs and reverse mortgages, we ensure your loan documents are executed correctly.</p>
         </div>
-        <div class="service-card">
-          <div class="service-card__icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          </div>
+        <div class="service-item">
           <h3>General Notary Services</h3>
           <p>From affidavits and powers of attorney to wills, apostilles, and I-9 employment verifications—we handle all standard notarizations. Our attention to detail ensures your documents are properly witnessed and legally compliant.</p>
         </div>
-        <div class="service-card">
-          <div class="service-card__icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
-          </div>
+        <div class="service-item">
           <h3>Field Inspections</h3>
           <p>We conduct thorough property condition reports, occupancy verifications, and insurance inspections throughout the Charlotte metropolitan area. Our detailed assessments provide accurate documentation for lenders and insurance companies.</p>
         </div>
-        <div class="carousel__dots" id="servicesDots"></div>
       </div>
+      <div class="services-dots" id="servicesDots"></div>
     </div>
   </section>
 
@@ -325,33 +313,33 @@
       updateParallax();
     })();
 
-    // === Services Carousel (Fade) ===
+    // === Services Fade ===
     (function() {
-      const carousel = document.getElementById('servicesCarousel');
+      const container = document.getElementById('servicesFade');
       const dotsContainer = document.getElementById('servicesDots');
-      const cards = carousel.querySelectorAll('.service-card');
+      const items = container.querySelectorAll('.service-item');
       let current = 0;
 
       // Build dots
-      cards.forEach((_, i) => {
+      items.forEach((_, i) => {
         const dot = document.createElement('button');
-        dot.className = 'carousel__dot' + (i === 0 ? ' active' : '');
+        dot.className = 'services-dot' + (i === 0 ? ' active' : '');
         dot.addEventListener('click', () => goTo(i));
         dotsContainer.appendChild(dot);
       });
 
       function goTo(index) {
-        cards[current].classList.remove('active');
+        items[current].classList.remove('active');
         current = index;
-        cards[current].classList.add('active');
-        dotsContainer.querySelectorAll('.carousel__dot').forEach((d, i) =>
+        items[current].classList.add('active');
+        dotsContainer.querySelectorAll('.services-dot').forEach((d, i) =>
           d.classList.toggle('active', i === current)
         );
       }
 
       // Auto rotate every 10 seconds
       setInterval(() => {
-        goTo((current + 1) % cards.length);
+        goTo((current + 1) % items.length);
       }, 10000);
     })();
 

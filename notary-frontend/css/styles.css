@@ -173,7 +173,7 @@ a:hover { color: var(--cerulean); }
   }
 }
 
-/* === Services Carousel === */
+/* === Services Fade === */
 .section--services {
   padding: 4rem 0;
 }
@@ -182,70 +182,49 @@ a:hover { color: var(--cerulean); }
   margin-bottom: 2rem;
 }
 
-.services-carousel {
+.services-fade {
   position: relative;
-  max-width: 700px;
+  max-width: 650px;
   margin: 0 auto;
-  min-height: 280px;
+  height: 220px;
 }
 
-.service-card {
+.service-item {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  padding: 2.5rem 2rem;
   text-align: center;
   opacity: 0;
-  transition: opacity 0.8s ease;
-  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
-.service-card.active {
+.service-item.active {
   opacity: 1;
-  pointer-events: auto;
+  visibility: visible;
 }
 
-.service-card__icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
-  background: linear-gradient(135deg, var(--primary), var(--gold));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.service-card__icon svg {
-  stroke: var(--white);
-}
-
-.service-card h3 {
+.service-item h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: var(--navy);
 }
 
-.service-card p {
+.service-item p {
   font-size: 1.05rem;
   line-height: 1.8;
   color: var(--gray-700);
-  max-width: 550px;
-  margin: 0 auto;
 }
 
-.carousel__dots {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.services-dots {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
+  margin-top: 2rem;
 }
 
-.carousel__dot {
+.services-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -256,7 +235,7 @@ a:hover { color: var(--cerulean); }
   transition: all 0.2s ease;
 }
 
-.carousel__dot.active {
+.services-dot.active {
   background: var(--primary);
   transform: scale(1.2);
 }
@@ -307,7 +286,7 @@ a:hover { color: var(--cerulean); }
 }
 
 .nav__brand-logo {
-  height: 120px;
+  height: 360px;
   width: auto;
   object-fit: contain;
 }
@@ -424,7 +403,7 @@ a:hover { color: var(--cerulean); }
   min-height: 500px;
   max-height: 750px;
   overflow: hidden;
-  margin-top: 120px;
+  margin-top: 360px;
 }
 
 .slideshow__slides {
@@ -1002,7 +981,7 @@ select.form-input {
 }
 
 .footer__brand-logo {
-  height: 100px;
+  height: 300px;
   width: auto;
   filter: brightness(0) invert(1);
 }
