@@ -286,7 +286,7 @@ a:hover { color: var(--cerulean); }
 }
 
 .nav__brand-logo {
-  height: 360px;
+  height: 180px;
   width: auto;
   object-fit: contain;
 }
@@ -403,7 +403,7 @@ a:hover { color: var(--cerulean); }
   min-height: 500px;
   max-height: 750px;
   overflow: hidden;
-  margin-top: 360px;
+  margin-top: 180px;
 }
 
 .slideshow__slides {
@@ -935,21 +935,20 @@ select.form-input {
 
 /* === CTA Section === */
 .cta {
-  background: var(--primary);
-  color: var(--navy);
+  background: transparent;
+  color: var(--text);
   padding: 4rem 2rem;
-  border-radius: var(--radius-lg);
   text-align: center;
 }
 
 .cta h2 {
-  color: var(--navy);
+  color: var(--text);
   font-size: 2.25rem;
   margin-bottom: 1rem;
 }
 
 .cta p {
-  color: var(--navy);
+  color: var(--text-light);
   font-size: 1.1rem;
   max-width: 500px;
   margin: 0 auto 2rem;
@@ -958,8 +957,8 @@ select.form-input {
 
 /* === Footer === */
 .footer {
-  background: var(--primary);
-  color: var(--navy);
+  background: #000000;
+  color: var(--white);
   padding: 3rem 0 1.5rem;
 }
 
@@ -971,7 +970,7 @@ select.form-input {
 }
 
 .footer__brand {
-  color: var(--navy);
+  color: var(--white);
   font-weight: 600;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
@@ -992,20 +991,20 @@ select.form-input {
   background: var(--navy);
   border-radius: 2px;
 }
-.footer__desc { font-size: 0.85rem; color: var(--navy); }
+.footer__desc { font-size: 0.85rem; color: var(--white); }
 
-.footer h4 { color: var(--navy); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+.footer h4 { color: var(--white); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
 
 .footer__links { list-style: none; }
 .footer__links li { margin-bottom: 0.4rem; }
-.footer__links a { color: var(--navy); font-size: 0.85rem; }
+.footer__links a { color: var(--white); font-size: 0.85rem; }
 .footer__links a:hover { color: var(--white); }
 
 .footer__bottom {
-  border-top: 1px solid var(--navy);
+  border-top: 1px solid rgba(255,255,255,0.2);
   padding-top: 1.5rem;
   font-size: 0.8rem;
-  color: var(--navy);
+  color: var(--white);
   display: flex;
   justify-content: space-between;
 }
