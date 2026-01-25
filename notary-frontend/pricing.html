@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Pricing — NotaryPro</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Payment Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      max-width: 440px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.active .modal {
+      transform: translateY(0);
+    }
+    .modal__header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal__header h3 {
+      margin: 0;
+    }
+    .modal__close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--gray-500);
+      line-height: 1;
+    }
+    .modal__close:hover {
+      color: var(--navy);
+    }
+    .modal__body {
+      padding: 1.5rem;
+    }
+    .modal__footer {
+      padding: 1.5rem;
+      border-top: 1px solid var(--gray-200);
+      background: var(--gray-50);
+    }
+    .order-summary {
+      margin-bottom: 1.5rem;
+    }
+    .order-summary__item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+    }
+    .order-summary__total {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 0.75rem;
+      margin-top: 0.5rem;
+      border-top: 2px solid var(--gray-200);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    #card-element {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+      background: var(--white);
+      transition: border-color 0.2s ease;
+    }
+    #card-element.StripeElement--focus {
+      border-color: var(--cerulean);
+      box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.15);
+    }
+    #card-element.StripeElement--invalid {
+      border-color: var(--error);
+    }
+    #card-errors {
+      color: var(--error);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      min-height: 1.25rem;
+    }
+    .stripe-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      margin-top: 1rem;
+    }
+    .stripe-badge svg {
+      opacity: 0.6;
+    }
+    /* Placeholder for unconfigured Stripe */
+    .stripe-placeholder {
+      text-align: center;
+      padding: 2rem;
+      background: var(--gray-50);
+      border: 2px dashed var(--gray-300);
+      border-radius: var(--radius);
+    }
+    .stripe-placeholder code {
+      display: block;
+      background: var(--navy);
+      color: var(--gold);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand">
+        <span class="nav__brand-icon">N</span>
+        NotaryPro
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pricing.html" class="active">Pricing</a></li>
+        <li><a href="scheduling.html">Book Now</a></li>
+        <li><a href="login.html" data-auth-link>Sign In</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Pricing Section -->
+  <section class="section" style="padding-top: 6rem;">
+    <div class="container">
+      <div class="text-center">
+        <h1>Simple, Transparent Pricing</h1>
+        <p style="max-width: 480px; margin: 0.75rem auto 0;">No hidden fees. Pay securely online or at your appointment.</p>
+      </div>
+
+      <div class="pricing-grid" id="pricingGrid">
+        <!-- Loaded dynamically -->
+      </div>
+
+      <!-- FAQ -->
+      <div style="max-width: 640px; margin: 4rem auto 0;">
+        <h2 class="text-center mb-3">Frequently Asked Questions</h2>
+
+        <div class="card mb-2">
+          <h3>What do I need to bring?</h3>
+          <p class="mt-1">A valid government-issued photo ID (driver's license, passport, or state ID) and your unsigned documents.</p>
+        </div>
+
+        <div class="card mb-2">
+          <h3>How long does it take?</h3>
+          <p class="mt-1">Most notarizations take 5-15 minutes. Loan signings may take 30-60 minutes depending on the number of documents.</p>
+        </div>
+
+        <div class="card mb-2">
+          <h3>Do you offer same-day appointments?</h3>
+          <p class="mt-1">Yes! Mobile and standard services often have same-day availability. Book online to see current openings.</p>
+        </div>
+
+        <div class="card mb-2">
+          <h3>What's the mobile service area?</h3>
+          <p class="mt-1">We serve a 25-mile radius from downtown Charlotte, NC including Huntersville, Matthews, Concord, and surrounding areas. Additional travel fees may apply beyond this range.</p>
+        </div>
+
+        <div class="card">
+          <h3>What payment methods do you accept?</h3>
+          <p class="mt-1">We accept all major credit cards, debit cards, and digital wallets via Stripe. Business accounts can be invoiced monthly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta">
+        <h2>Not Sure Which Plan?</h2>
+        <p>Contact us and we'll help you find the right option for your needs.</p>
+        <a href="index.html#contact" class="btn btn--gold btn--lg">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <span>&copy; 2026 NotaryPro. All rights reserved.</span>
+        <span>Licensed Notary Public • Charlotte, NC</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Payment Modal -->
+  <div class="modal-overlay" id="paymentModal">
+    <div class="modal">
+      <div class="modal__header">
+        <h3>Complete Payment</h3>
+        <button class="modal__close" id="closeModal">&times;</button>
+      </div>
+      <div class="modal__body">
+        <div class="order-summary">
+          <div class="order-summary__item">
+            <span>Service</span>
+            <span id="modalService">—</span>
+          </div>
+          <div class="order-summary__item">
+            <span>Price</span>
+            <span id="modalPrice">—</span>
+          </div>
+          <div class="order-summary__total">
+            <span>Total</span>
+            <span id="modalTotal">—</span>
+          </div>
+        </div>
+
+        <form id="paymentForm">
+          <div class="form-group">
+            <label for="paymentEmail">Email</label>
+            <input type="email" id="paymentEmail" class="form-input" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>Card Details</label>
+            <div id="card-element"></div>
+            <div id="card-errors" role="alert"></div>
+          </div>
+        </form>
+
+        <div class="stripe-badge">
+          <svg width="32" height="13" viewBox="0 0 60 25" fill="currentColor">
+            <path d="M59.64 14.28h-8.06c.19 1.93 1.6 2.55 3.2 2.55 1.64 0 2.96-.37 4.05-.95v3.32c-1.12.57-2.7 1.1-4.64 1.1-4.26 0-6.94-2.49-6.94-6.94 0-4.18 2.52-7.08 6.4-7.08 3.85 0 6.04 2.87 6.04 6.79 0 .37-.03 1-.05 1.21zm-3.75-2.65c0-1.4-.63-2.7-2.1-2.7-1.42 0-2.22 1.26-2.36 2.7h4.46zM41.16 20.15V6.59h4.1l.24 1.57c.74-1.2 1.92-1.9 3.44-1.9 1.4 0 2.58.5 3.43 1.54l-1.98 3.26c-.6-.65-1.28-1-2.14-1-1.48 0-2.75 1.1-2.75 3.36v6.73h-4.34zM30.42 20.15V11.1c0-.94-.46-1.42-1.24-1.42-.82 0-1.42.57-1.74 1.15v9.32h-4.33V11.1c0-.94-.47-1.42-1.24-1.42-.78 0-1.37.53-1.7 1.1v9.37h-4.33V6.59h3.98l.28 1.5c.76-1.1 2.07-1.82 3.67-1.82 1.56 0 2.7.69 3.27 1.87.82-1.18 2.1-1.87 3.62-1.87 2.3 0 3.8 1.4 3.8 4.08v9.8h-4.04zM8.68 20.15V6.59h4.1l.24 1.47c.85-1.15 2.14-1.79 3.73-1.79v4.1c-1.9-.24-3.73.52-3.73 2.98v6.8H8.68zM0 14.28c0-4.4 2.85-8.01 7.32-8.01 2.03 0 3.63.56 4.73 1.4l-1.56 3.02c-.76-.56-1.7-.93-2.85-.93-2.04 0-3.28 1.51-3.28 4.44 0 2.97 1.28 4.44 3.33 4.44 1.1 0 2.1-.37 2.85-.93l1.56 3.05c-1.1.82-2.7 1.37-4.73 1.37-4.47 0-7.37-3.43-7.37-7.85z"/>
+          </svg>
+          <span>Payments secured by Stripe</span>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button type="submit" form="paymentForm" class="btn btn--primary btn--block" id="submitPayment">
+          Pay Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stripe.js -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // === Stripe Configuration ===
+    const STRIPE_CONFIG = {
+      // Replace with your Stripe publishable key (starts with pk_)
+      publishableKey: 'YOUR_STRIPE_PUBLISHABLE_KEY',
+
+      // Optional: Stripe Account ID for Connect
+      // stripeAccount: 'acct_xxxxx'
+    };
+
+    let stripe = null;
+    let cardElement = null;
+    let selectedPlan = null;
+
+    // Initialize Stripe if configured
+    function initStripe() {
+      if (STRIPE_CONFIG.publishableKey !== 'YOUR_STRIPE_PUBLISHABLE_KEY') {
+        stripe = Stripe(STRIPE_CONFIG.publishableKey);
+        const elements = stripe.elements();
+
+        cardElement = elements.create('card', {
+          style: {
+            base: {
+              fontSize: '16px',
+              color: '#111111',
+              '::placeholder': { color: '#8a909c' }
+            },
+            invalid: { color: '#e74c3c' }
+          }
+        });
+
+        cardElement.mount('#card-element');
+
+        cardElement.on('change', function(event) {
+          const displayError = document.getElementById('card-errors');
+          displayError.textContent = event.error ? event.error.message : '';
+        });
+      }
+    }
+
+    // Load pricing from API
+    (async () => {
+      const result = await API.getPricing();
+      if (!result.success) return;
+
+      const grid = document.getElementById('pricingGrid');
+      grid.innerHTML = result.plans.map(plan => `
+        <div class="pricing-card ${plan.featured ? 'pricing-card--featured' : ''}">
+          ${plan.featured ? '<div class="pricing-card__badge">Most Popular</div>' : ''}
+          <h3>${plan.name}</h3>
+          <div class="pricing-card__price">
+            $${plan.price}<span> ${plan.per}</span>
+          </div>
+          <ul class="pricing-card__features">
+            ${plan.features.map(f => `<li>${f}</li>`).join('')}
+          </ul>
+          <button class="btn ${plan.featured ? 'btn--gold' : 'btn--primary'} btn--block"
+                  data-plan="${plan.id}"
+                  data-name="${plan.name}"
+                  data-price="${plan.price}">
+            ${plan.id === 'business' ? 'Contact Sales' : 'Pay & Book'}
+          </button>
+        </div>
+      `).join('');
+
+      // Attach click handlers
+      grid.querySelectorAll('button[data-plan]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const planId = btn.dataset.plan;
+          if (planId === 'business') {
+            // Business plan - redirect to contact
+            window.location.href = 'index.html#contact';
+          } else {
+            // Open payment modal
+            openPaymentModal({
+              id: planId,
+              name: btn.dataset.name,
+              price: parseInt(btn.dataset.price)
+            });
+          }
+        });
+      });
+
+      // Initialize Stripe after DOM is ready
+      initStripe();
+    })();
+
+    // Payment Modal
+    const modal = document.getElementById('paymentModal');
+
+    function openPaymentModal(plan) {
+      selectedPlan = plan;
+
+      document.getElementById('modalService').textContent = plan.name;
+      document.getElementById('modalPrice').textContent = `$${plan.price}`;
+      document.getElementById('modalTotal').textContent = `$${plan.price}`;
+
+      // Pre-fill email if logged in
+      const user = getCurrentUser();
+      if (user) {
+        document.getElementById('paymentEmail').value = user.email || '';
+      }
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      // Check if Stripe is configured
+      if (STRIPE_CONFIG.publishableKey === 'YOUR_STRIPE_PUBLISHABLE_KEY') {
+        document.getElementById('card-element').innerHTML = `
+          <div class="stripe-placeholder">
+            <p style="margin: 0; font-size: 0.9rem; color: var(--gray-700);">Stripe integration ready</p>
+            <p style="margin: 0.5rem 0 0; font-size: 0.8rem; color: var(--gray-500);">Add your publishable key to enable payments</p>
+            <code>STRIPE_CONFIG.publishableKey = 'pk_...'</code>
+          </div>
+        `;
+      }
+    }
+
+    function closePaymentModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      selectedPlan = null;
+    }
+
+    document.getElementById('closeModal').addEventListener('click', closePaymentModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closePaymentModal();
+    });
+
+    // Handle payment submission
+    document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('paymentEmail').value;
+      if (!validateEmail(email)) {
+        showToast('Please enter a valid email', 'error');
+        return;
+      }
+
+      const btn = document.getElementById('submitPayment');
+      setLoading(btn);
+
+      if (STRIPE_CONFIG.publishableKey === 'YOUR_STRIPE_PUBLISHABLE_KEY') {
+        // Demo mode - simulate success
+        await new Promise(r => setTimeout(r, 1500));
+        setLoading(btn, false);
+        closePaymentModal();
+        showToast('Demo: Payment would be processed here');
+        setTimeout(() => {
+          window.location.href = 'scheduling.html';
+        }, 1500);
+        return;
+      }
+
+      try {
+        // In production, you would:
+        // 1. Call your backend to create a PaymentIntent
+        // 2. Use the client_secret to confirm the payment
+        // Example:
+        // const response = await fetch('/api/create-payment-intent', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify({ planId: selectedPlan.id, email })
+        // });
+        // const { clientSecret } = await response.json();
+
+        // For now, show that Stripe is connected
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
+          type: 'card',
+          card: cardElement,
+          billing_details: { email }
+        });
+
+        if (error) {
+          document.getElementById('card-errors').textContent = error.message;
+          setLoading(btn, false);
+          return;
+        }
+
+        // Success - in production, send paymentMethod.id to your backend
+        console.log('PaymentMethod created:', paymentMethod.id);
+        setLoading(btn, false);
+        closePaymentModal();
+        showToast('Payment method validated! Backend integration needed to complete.');
+
+        // Redirect to scheduling after successful payment
+        setTimeout(() => {
+          window.location.href = 'scheduling.html';
+        }, 2000);
+
+      } catch (err) {
+        console.error('Payment error:', err);
+        document.getElementById('card-errors').textContent = 'An error occurred. Please try again.';
+        setLoading(btn, false);
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closePaymentModal();
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — NotaryPro</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-card__header">
+        <a href="index.html" class="nav__brand" style="justify-content: center; margin-bottom: 1.5rem;">
+          <span class="nav__brand-icon">N</span>
+          NotaryPro
+        </a>
+        <h2 id="authTitle">Welcome Back</h2>
+        <p>Sign in to manage your appointments</p>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" class="form-input" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" class="form-input" placeholder="Your password" required>
+        </div>
+        <button type="submit" class="btn btn--primary btn--block btn--lg">Sign In</button>
+      </form>
+
+      <!-- Signup Form (hidden by default) -->
+      <form id="signupForm" class="hidden">
+        <div class="form-group">
+          <label for="signupName">Full Name</label>
+          <input type="text" id="signupName" class="form-input" placeholder="Jane Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="signupEmail">Email</label>
+          <input type="email" id="signupEmail" class="form-input" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" class="form-input" placeholder="Create a password (6+ chars)" required minlength="6">
+        </div>
+        <div class="form-group">
+          <label for="signupPhone">Phone (optional)</label>
+          <input type="tel" id="signupPhone" class="form-input" placeholder="(555) 123-4567">
+        </div>
+        <button type="submit" class="btn btn--primary btn--block btn--lg">Create Account</button>
+      </form>
+
+      <div class="auth-divider"><span>or</span></div>
+
+      <button class="btn btn--outline btn--block" id="googleBtn" style="margin-bottom: 0.75rem;">
+        Continue with Google
+      </button>
+
+      <div class="auth-footer">
+        <span id="authToggleText">Don't have an account?</span>
+        <a href="#" id="authToggle">Sign Up</a>
+      </div>
+
+      <!-- Demo credentials hint -->
+      <div style="margin-top: 1.5rem; padding: 1rem; background: var(--gray-50); border-radius: var(--radius); font-size: 0.8rem; color: var(--gray-500);">
+        <strong>Demo:</strong> demo@notary.com / demo123
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const authTitle = document.getElementById('authTitle');
+    const authToggle = document.getElementById('authToggle');
+    const authToggleText = document.getElementById('authToggleText');
+    let isLogin = true;
+
+    // Toggle between login and signup
+    authToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      isLogin = !isLogin;
+      loginForm.classList.toggle('hidden', !isLogin);
+      signupForm.classList.toggle('hidden', isLogin);
+      authTitle.textContent = isLogin ? 'Welcome Back' : 'Create Account';
+      authToggle.textContent = isLogin ? 'Sign Up' : 'Sign In';
+      authToggleText.textContent = isLogin ? "Don't have an account?" : 'Already have an account?';
+    });
+
+    // Login handler
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      setLoading(btn);
+
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      const result = await API.login(email, password);
+      setLoading(btn, false);
+
+      if (result.success) {
+        setAuth(result.token, result.user);
+        showToast('Welcome back, ' + result.user.name + '!');
+        setTimeout(() => window.location.href = 'dashboard.html', 800);
+      } else {
+        showToast(result.error, 'error');
+      }
+    });
+
+    // Signup handler
+    signupForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      setLoading(btn);
+
+      const name = document.getElementById('signupName').value;
+      const email = document.getElementById('signupEmail').value;
+      const password = document.getElementById('signupPassword').value;
+
+      if (!validateEmail(email)) {
+        showToast('Please enter a valid email', 'error');
+        setLoading(btn, false);
+        return;
+      }
+
+      const result = await API.signup(name, email, password);
+      setLoading(btn, false);
+
+      if (result.success) {
+        setAuth(result.token, result.user);
+        showToast('Account created! Welcome, ' + result.user.name);
+        setTimeout(() => window.location.href = 'dashboard.html', 800);
+      } else {
+        showToast(result.error, 'error');
+      }
+    });
+
+    // Google mock
+    document.getElementById('googleBtn').addEventListener('click', () => {
+      showToast('Google OAuth integration — coming soon', 'error');
+    });
+
+    // Redirect if already logged in
+    if (isAuthenticated()) {
+      window.location.href = 'dashboard.html';
+    }
+  </script>
+
+</body>
+</html>

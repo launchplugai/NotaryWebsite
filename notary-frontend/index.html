@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>NotaryPro — Professional Notary Services in Charlotte, NC</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand">
+        <span class="nav__brand-icon">N</span>
+        NotaryPro
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="scheduling.html">Book Now</a></li>
+        <li><a href="login.html" data-auth-link>Sign In</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Slideshow -->
+  <section class="slideshow">
+    <div class="slideshow__slides">
+      <div class="slideshow__slide active" style="background-image: url('https://i.pinimg.com/1200x/c6/5a/b0/c65ab09a04e8341aa2da346dabf03643.jpg')"></div>
+      <div class="slideshow__slide" style="background-image: url('https://i.pinimg.com/1200x/c3/b9/1c/c3b91c184b079f08d71940bc4cd39b8d.jpg')"></div>
+      <div class="slideshow__slide" style="background-image: url('https://i.pinimg.com/736x/87/bf/35/87bf3526abb52bffaef1f04fc6affaad.jpg')"></div>
+      <div class="slideshow__slide" style="background-image: url('https://i.pinimg.com/1200x/6e/fb/ef/6efbefd43868d543fcbf0d45c934ca3c.jpg')"></div>
+    </div>
+    <div class="slideshow__overlay">
+      <div class="container">
+        <div class="slideshow__copy active" data-slide="0">
+          <h1>Your Documents, Handled Right</h1>
+          <p>Charlotte's trusted notary for real estate, legal, and business needs — done with care and precision.</p>
+        </div>
+        <div class="slideshow__copy" data-slide="1">
+          <h1>Mobile Notary, On Your Schedule</h1>
+          <p>We come to your home, office, or anywhere in the Charlotte area. Same-day availability.</p>
+        </div>
+        <div class="slideshow__copy" data-slide="2">
+          <h1>Trusted by Hundreds of Clients</h1>
+          <p>Licensed, insured, and committed to making every signing smooth and stress-free.</p>
+        </div>
+        <div class="slideshow__copy" data-slide="3">
+          <h1>Fast Turnaround, No Hassle</h1>
+          <p>Most documents notarized in under 15 minutes. Walk-ins welcome, appointments preferred.</p>
+        </div>
+        <div class="hero__actions">
+          <a href="scheduling.html" class="btn btn--primary btn--lg">Book an Appointment</a>
+          <a href="pricing.html" class="btn btn--outline btn--lg" style="background: rgba(255,255,255,0.9); border-color: transparent;">View Pricing</a>
+        </div>
+      </div>
+    </div>
+    <div class="slideshow__dots">
+      <button class="slideshow__dot active" data-index="0"></button>
+      <button class="slideshow__dot" data-index="1"></button>
+      <button class="slideshow__dot" data-index="2"></button>
+      <button class="slideshow__dot" data-index="3"></button>
+    </div>
+    <button class="slideshow__arrow slideshow__arrow--prev" aria-label="Previous">&lsaquo;</button>
+    <button class="slideshow__arrow slideshow__arrow--next" aria-label="Next">&rsaquo;</button>
+  </section>
+
+  <!-- How It Works — Dark Timeline -->
+  <section class="section section--dark">
+    <div class="container">
+      <h2 class="text-center" style="color: var(--white);">How It Works</h2>
+      <p class="text-center" style="color: var(--gray-300); margin-bottom: 3rem;">Three simple steps to get your documents notarized.</p>
+      <div class="timeline">
+        <div class="timeline__step reveal">
+          <div class="timeline__number">1</div>
+          <div class="timeline__content">
+            <h3>Choose Your Service</h3>
+            <p>Select from standard in-office, mobile, or business notarization packages.</p>
+          </div>
+        </div>
+        <div class="timeline__connector"></div>
+        <div class="timeline__step reveal">
+          <div class="timeline__number">2</div>
+          <div class="timeline__content">
+            <h3>Pick a Time</h3>
+            <p>Book online in seconds. Same-day appointments available for mobile services.</p>
+          </div>
+        </div>
+        <div class="timeline__connector"></div>
+        <div class="timeline__step reveal">
+          <div class="timeline__number">3</div>
+          <div class="timeline__content">
+            <h3>Get Notarized</h3>
+            <p>Bring your documents and valid ID. We handle the rest professionally and quickly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Carousel -->
+  <section class="section section--services">
+    <div class="container">
+      <h2 class="text-center">Services We Offer</h2>
+      <div class="services-carousel">
+        <button class="carousel__arrow carousel__arrow--prev" aria-label="Previous">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="carousel__track-container">
+          <div class="carousel__track">
+            <div class="service-slide">
+              <div class="service-slide__icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
+                </svg>
+              </div>
+              <h3>Notary Trust Delivery Agent</h3>
+              <p>Secure, verified delivery of sensitive estate and trust documents with full chain-of-custody documentation.</p>
+            </div>
+            <div class="service-slide">
+              <div class="service-slide__icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </div>
+              <h3>Certified Loan Signing Agent</h3>
+              <p>Professional closings for purchases, refinances, HELOCs, and reverse mortgages with NNA certification.</p>
+            </div>
+            <div class="service-slide">
+              <div class="service-slide__icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+              </div>
+              <h3>General Notary Services</h3>
+              <p>Affidavits, powers of attorney, wills, apostilles, I-9 verifications, and all standard notarizations.</p>
+            </div>
+            <div class="service-slide">
+              <div class="service-slide__icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M11 8v6"/><path d="M8 11h6"/>
+                </svg>
+              </div>
+              <h3>Field Inspections</h3>
+              <p>Property condition reports, occupancy verification, and insurance inspections throughout the Charlotte metro.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel__arrow carousel__arrow--next" aria-label="Next">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <div class="carousel__dots">
+        <button class="carousel__dot active" data-index="0"></button>
+        <button class="carousel__dot" data-index="1"></button>
+        <button class="carousel__dot" data-index="2"></button>
+        <button class="carousel__dot" data-index="3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet Your Notary — Bio Section -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="bio reveal">
+        <div class="bio__image-wrap">
+          <img src="https://i.ibb.co/Lzp2K2rQ/1-BD0-CD55-AF06-4-F72-B4-BB-EAB54-EEC9-D41.png" alt="Your Charlotte Notary Professional" class="bio__image">
+        </div>
+        <div class="bio__content">
+          <h2>Meet Your Notary</h2>
+          <p class="bio__title">Licensed Notary Public, Charlotte NC</p>
+          <p class="bio__text">
+            With years of experience serving individuals, families, and businesses throughout the greater Charlotte area, I understand that every document tells a story. Whether it's a home closing, a power of attorney, or an important business agreement, I bring the same level of care and professionalism to every signing.
+          </p>
+          <p class="bio__text">
+            I founded NotaryPro to make professional notary services accessible, convenient, and stress-free. My commitment is simple: accurate work, flexible scheduling, and the personal attention you deserve.
+          </p>
+          <div class="bio__credentials">
+            <span class="bio__credential">NC Commissioned</span>
+            <span class="bio__credential">Insured & Bonded</span>
+            <span class="bio__credential">NNA Certified</span>
+            <span class="bio__credential">Mobile Services</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section">
+    <div class="container">
+      <div class="cta">
+        <h2>Ready to Get Started?</h2>
+        <p>Book your appointment today. Most documents can be notarized in under 15 minutes.</p>
+        <a href="scheduling.html" class="btn btn--gold btn--lg">Schedule Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Lead Capture -->
+  <section class="section section--gray" id="contact">
+    <div class="container" style="max-width: 560px;">
+      <h2 class="text-center">Questions? Get in Touch</h2>
+      <p class="text-center mb-3">We'll respond within 24 hours.</p>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="contactName">Full Name</label>
+          <input type="text" id="contactName" class="form-input" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="contactEmail">Email</label>
+          <input type="email" id="contactEmail" class="form-input" placeholder="john@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="contactPhone">Phone (optional)</label>
+          <input type="tel" id="contactPhone" class="form-input" placeholder="(555) 123-4567">
+        </div>
+        <div class="form-group">
+          <label for="contactMessage">How can we help?</label>
+          <textarea id="contactMessage" class="form-input" placeholder="Tell us about your notarization needs..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary btn--block">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">NotaryPro</div>
+          <p class="footer__desc">Professional notary services in Charlotte, NC for individuals and businesses. Licensed, insured, and ready to serve.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer__links">
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="scheduling.html">Book Now</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul class="footer__links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 NotaryPro. All rights reserved.</span>
+        <span>Licensed Notary Public</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // === Scroll Reveal ===
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('revealed');
+          }, i * 120);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // === Slideshow ===
+    (function() {
+      const slides = document.querySelectorAll('.slideshow__slide');
+      const dots = document.querySelectorAll('.slideshow__dot');
+      const copies = document.querySelectorAll('.slideshow__copy');
+      const prevBtn = document.querySelector('.slideshow__arrow--prev');
+      const nextBtn = document.querySelector('.slideshow__arrow--next');
+      let current = 0;
+      let timer;
+
+      function goTo(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        copies[current].classList.remove('active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        copies[current].classList.add('active');
+        resetTimer();
+      }
+
+      function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), 5000);
+      }
+
+      prevBtn.addEventListener('click', () => goTo(current - 1));
+      nextBtn.addEventListener('click', () => goTo(current + 1));
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => goTo(+dot.dataset.index));
+      });
+
+      resetTimer();
+    })();
+
+    // === Services Carousel ===
+    (function() {
+      const track = document.querySelector('.carousel__track');
+      const slides = document.querySelectorAll('.service-slide');
+      const dots = document.querySelectorAll('.carousel__dot');
+      const prevBtn = document.querySelector('.carousel__arrow--prev');
+      const nextBtn = document.querySelector('.carousel__arrow--next');
+      let current = 0;
+      let autoTimer;
+
+      function goTo(index) {
+        current = (index + slides.length) % slides.length;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        resetAuto();
+      }
+
+      function resetAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => goTo(current + 1), 4000);
+      }
+
+      prevBtn.addEventListener('click', () => goTo(current - 1));
+      nextBtn.addEventListener('click', () => goTo(current + 1));
+      dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.index)));
+
+      // Touch/swipe support
+      let startX = 0;
+      track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', (e) => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+      }, { passive: true });
+
+      resetAuto();
+    })();
+
+    // Contact form handler
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      setLoading(btn);
+
+      const data = {
+        name: document.getElementById('contactName').value,
+        email: document.getElementById('contactEmail').value,
+        phone: document.getElementById('contactPhone').value,
+        message: document.getElementById('contactMessage').value
+      };
+
+      if (!validateEmail(data.email)) {
+        showToast('Please enter a valid email address', 'error');
+        setLoading(btn, false);
+        return;
+      }
+
+      const result = await API.submitContact(data);
+      setLoading(btn, false);
+
+      if (result.success) {
+        showToast(result.message);
+        e.target.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>
