@@ -197,9 +197,34 @@
   <section class="section">
     <div class="container">
       <div class="cta">
-        <h2>Ready to Get Started?</h2>
-        <p>Book your appointment today. Most documents can be notarized in under 15 minutes.</p>
-        <a href="scheduling.html" class="btn btn--gold btn--lg">Schedule Now</a>
+        <div class="cta__content">
+          <span class="cta__badge">Quick & Professional</span>
+          <h2>Ready to Get Started?</h2>
+          <p>Book your appointment today and experience hassle-free notary services. Most documents notarized in under 15 minutes.</p>
+          <a href="scheduling.html" class="btn btn--gold btn--lg">Schedule Your Appointment</a>
+        </div>
+        <div class="cta__features">
+          <div class="cta__feature">
+            <div class="cta__feature-icon">&#128197;</div>
+            <h4>Same-Day Available</h4>
+            <p>Flexible scheduling to fit your busy life</p>
+          </div>
+          <div class="cta__feature">
+            <div class="cta__feature-icon">&#128205;</div>
+            <h4>Mobile Service</h4>
+            <p>We come to you anywhere in Charlotte</p>
+          </div>
+          <div class="cta__feature">
+            <div class="cta__feature-icon">&#128274;</div>
+            <h4>Secure & Certified</h4>
+            <p>Licensed, bonded, and insured</p>
+          </div>
+          <div class="cta__feature">
+            <div class="cta__feature-icon">&#9889;</div>
+            <h4>Fast Turnaround</h4>
+            <p>Most signings done in 15 minutes</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -315,6 +340,37 @@
       });
 
       resetTimer();
+    })();
+
+    // === Parallax Scroll Effect ===
+    (function() {
+      const slideshowSlides = document.querySelector('.slideshow__slides');
+      const slideshow = document.querySelector('.slideshow');
+      let ticking = false;
+
+      function updateParallax() {
+        const scrollY = window.scrollY;
+        const slideshowHeight = slideshow.offsetHeight;
+        const slideshowBottom = slideshow.offsetTop + slideshowHeight;
+
+        // Only apply effect while slideshow is visible
+        if (scrollY < slideshowBottom) {
+          // Parallax factor: slides move slower than scroll (0.4 = 40% speed)
+          const parallaxOffset = scrollY * 0.4;
+          slideshowSlides.style.transform = `translate3d(0, ${parallaxOffset}px, 0)`;
+        }
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // Initial call
+      updateParallax();
     })();
 
     // === Services Carousel ===
