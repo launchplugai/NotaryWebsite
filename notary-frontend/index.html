@@ -109,8 +109,8 @@
   <section class="section section--services">
     <div class="container">
       <h2 class="text-center">Services We Offer</h2>
-      <div class="services-fade" id="servicesFade">
-        <div class="service-item active">
+      <div class="services-grid">
+        <div class="service-item">
           <h3>Notary Trust Delivery Agent</h3>
           <p>We provide secure, verified delivery of sensitive estate and trust documents with complete chain-of-custody documentation. Your important legal papers are handled with the utmost care and delivered safely to their intended destination.</p>
         </div>
@@ -127,7 +127,6 @@
           <p>We conduct thorough property condition reports, occupancy verifications, and insurance inspections throughout the Charlotte metropolitan area. Our detailed assessments provide accurate documentation for lenders and insurance companies.</p>
         </div>
       </div>
-      <div class="services-dots" id="servicesDots"></div>
     </div>
   </section>
 
@@ -316,36 +315,6 @@
 
       // Initial call
       updateParallax();
-    })();
-
-    // === Services Fade ===
-    (function() {
-      const container = document.getElementById('servicesFade');
-      const dotsContainer = document.getElementById('servicesDots');
-      const items = container.querySelectorAll('.service-item');
-      let current = 0;
-
-      // Build dots
-      items.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.className = 'services-dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => goTo(i));
-        dotsContainer.appendChild(dot);
-      });
-
-      function goTo(index) {
-        items[current].classList.remove('active');
-        current = index;
-        items[current].classList.add('active');
-        dotsContainer.querySelectorAll('.services-dot').forEach((d, i) =>
-          d.classList.toggle('active', i === current)
-        );
-      }
-
-      // Auto rotate every 10 seconds
-      setInterval(() => {
-        goTo((current + 1) % items.length);
-      }, 10000);
     })();
 
     // Contact form handler
