@@ -4,19 +4,6 @@
   # No build command needed - static HTML site
   publish = "."
 
-# Redirect rules
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  conditions = {Role = ["admin"]}
-
-# 404 handling
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 404
-
 # Headers are managed in _headers file
 
 # Environment-specific settings
