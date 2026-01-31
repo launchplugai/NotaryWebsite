@@ -1150,6 +1150,21 @@ select.form-input {
   font-weight: 700;
 }
 
+.bio__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  align-items: center;
+}
+
+.bio__badge {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
 @media (max-width: 768px) {
   .bio {
     grid-template-columns: 1fr;
@@ -1168,6 +1183,14 @@ select.form-input {
 
   .bio__credentials {
     justify-content: center;
+  }
+
+  .bio__badges {
+    justify-content: center;
+  }
+
+  .bio__badge {
+    height: 60px;
   }
 }
 
