@@ -182,62 +182,40 @@ a:hover { color: var(--cerulean); }
   margin-bottom: 2rem;
 }
 
-.services-fade {
-  position: relative;
-  max-width: 650px;
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1000px;
   margin: 0 auto;
-  height: 220px;
 }
 
 .service-item {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-.service-item.active {
-  opacity: 1;
-  visibility: visible;
+  background: var(--white);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 1px solid var(--gray-100);
 }
 
 .service-item h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
   color: var(--navy);
 }
 
 .service-item p {
-  font-size: 1.05rem;
-  line-height: 1.8;
+  font-size: 0.95rem;
+  line-height: 1.7;
   color: var(--gray-700);
 }
 
-.services-dots {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 2rem;
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 }
-
-.services-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: none;
-  background: var(--gray-300);
-  cursor: pointer;
-  padding: 0;
   transition: all 0.2s ease;
-}
-
-.services-dot.active {
-  background: var(--primary);
-  transform: scale(1.2);
 }
 
 /* === Scroll Reveal === */
@@ -1153,13 +1131,13 @@ select.form-input {
 .bio__badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1rem;
   margin-top: 1.5rem;
   align-items: center;
 }
 
 .bio__badge {
-  height: 80px;
+  height: 50px;
   width: auto;
   object-fit: contain;
   border-radius: var(--radius-sm);
@@ -1190,7 +1168,7 @@ select.form-input {
   }
 
   .bio__badge {
-    height: 60px;
+    height: 40px;
   }
 }
 
